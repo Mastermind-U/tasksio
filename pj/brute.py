@@ -28,7 +28,7 @@ def exit_after(s):
 			return result
 		return inner
 	return outer
-#end
+#end_init
 
 class Password():
 	def __init__(self, hash):
