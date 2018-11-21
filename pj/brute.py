@@ -38,8 +38,8 @@ class Password():
 	#@exit_after(100)
 	def brute(self):
 		i = 0
-		#r = range(10)
-		r = list(map(chr, range(128)))
+		r = range(10)
+		#r = list(map(chr, range(128)))
 		while True:
 			i+=1
 			combo = itertools.product(r, repeat=i)
@@ -47,15 +47,15 @@ class Password():
 				pass_ = ''
 				for el in elem: #Делаем строки из комбинаций
 					pass_+=str(el) #hashlib.md5(pass_.encode()).hexdigest():
-				if hashlib.md5(pass_.encode()).hexdigest() == self.hash: #Сравниваем переданныйй хэш и хэш полученный
+				if hashlib.md5(hex(int(pass_)).encode()).hexdigest() == self.hash: #Сравниваем переданныйй хэш и хэш полученный
 					#self.hpass = pass_
 					return hex(int(pass_))
 			
 def main():
-	password = '0123' #type your password here
+	password = hex(255255) #type your password here
 	print('original: {}'.format(password))
 	a = Password(password)
-	print('hashed original: {}, \nbruted: {}'.format(a.hash, a.brute()))
+	print(f'hashed original: {a.hash}, \nbruted: {a.brute()}')
 
 
 
