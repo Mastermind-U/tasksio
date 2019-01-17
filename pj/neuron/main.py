@@ -24,11 +24,11 @@ def f_vector(): #выводим результат конъюнкции по т�
 
 
 def main():
-	weight = [0,0]
+	weight = [0.02,0.02]
 	y = [0, 0, 0, 0]
 	gen = 0
-	error = 1
-	nu = 0.25
+	error = 100
+	nu = 0.32
 	gen_arr = error_arr = []
 	while error != 0:
 		error = 0
@@ -39,10 +39,13 @@ def main():
 			error += 1 if delta != 0 else 0
 
 			weight = [weight[l] + nu * delta * int(x[l]) for l in range(1)]
-
+			print(weight)
 		gen += 1
 		gen_arr.append(gen)
 		error_arr.append(error)
+
+
+		
 	plot(epoch_arr, error_arr)
 	print(f'\nКоличество эпох: {gen}')
 	print(f'Конечный вес: {weight}')
