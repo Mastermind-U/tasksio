@@ -47,7 +47,7 @@ def main():
 	y = [0, 0, 0, 0] #инициализация массива вывода
 	gen = 0 #Поколение
 	error = 100
-	nu = 0.3
+	nu = 0.04
 	gen_arr = error_arr = []
 	while error != 0:  #error != 0: #gen<20: #
 		error = 0
@@ -56,7 +56,7 @@ def main():
 			net_n = net(weight, x)
 			y[i] = out(net_n)
 
-			delta = abs(f_vector()[i] - y[i])
+			delta = f_vector()[i] - y[i]
 			# err = f_vector()[i] - net_n
 			error += 1 if delta != 0 else 0
 			#отладка
