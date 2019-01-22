@@ -1,6 +1,7 @@
+from numpy import *
 from PIL import Image
 from pylab import *
-
+from imtools import histeq
 # im = array(Image.open('emp.jpg'))
 
 # imshow(im)
@@ -9,16 +10,21 @@ from pylab import *
 # print('', x)
 # show()
 
+im = array(Image.open('emp.jpg').convert('L'))
+im2, cdf = histeq(im)
+figure()
+axis('off')
+imshow(im)
+# contour(im, origin = 'image')
 
-def imresize(im, size):
-	pil_im = Image.formarray(uint8(im))
-	return array(pil_im.resize(sz))
 
-def histeq(im, nbr_bins=256):
-	# Гистограмма полутонового изображения
+figure()
+imshow(im2)
 
-	imhist, bins = histogram(im.flatten(), nbr_bins, normed=True)
-	cdf = imhist.cumsum()
-	cdf = 255 * cdf / cdf [-1] #Нормируем
-	im2 = interp(im.flatten(), bins[:-1], cdf)
-	return im2.reshape(im.shape), cdf
+
+figure()
+hist(im.flatten(), 128)
+
+figure()
+hist(im2.flatten(), 128)
+show()
