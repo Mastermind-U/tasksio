@@ -11,10 +11,13 @@ def server():
     server_socket.bind(('0.0.0.0', 5555))
     server_socket.listen()
 
+    selector.register(fileobj=server_socket, events=selectors.EVENT_READ, data=accept_connection)
+
 
 def accept_connection(server_socket):
     client_socket, addr = server_socket.accept()
     print('connection from', addr)
+    selector.register(fileobj=client_socket, events=selectors.EVENT_READ, data=send_message)
 
 
 def send_message(client_socket):
@@ -23,13 +26,19 @@ def send_message(client_socket):
         response = f'Hello world {request}\n'.encode()
         client_socket.send(response)
     else:
+        selector.unregister(client_socket)
         client_socket.close()
 
 
 def event_loop():
     while True:
-        pass
+        events = selector.select()
+
+        for key, _ in events:
+            callback = key.data
+            callback(key.fileobj)
 
 
 if __name__ == "__main__":
+    server()
     event_loop()
