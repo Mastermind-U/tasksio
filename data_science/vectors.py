@@ -1,9 +1,6 @@
 from functools import reduce
 import math
 
-height_weight_age = [175, 68, 40]
-grades = [95, 80, 75, 62]
-
 
 def vector_add(v, w):
     """Сложение векторов"""
