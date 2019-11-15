@@ -1,5 +1,8 @@
-from functools import reduce
 import math
+from functools import reduce
+from typing import List
+
+Vector = List[float]
 
 
 def vector_add(v, w):
@@ -17,9 +20,9 @@ def vector_sum(vectors):
     return reduce(vector_add, vectors)
 
 
-def scalar_multiply(c: float or int, v: list = []):
+def scalar_multiply(scalar: float, vector: Vector) -> Vector:
     """Умножение вектора на скаляр"""
-    return [c * v_i for v_i in v]
+    return [scalar * v_i for v_i in vector]
 
 
 def vector_mean(vectors):
