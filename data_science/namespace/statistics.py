@@ -35,7 +35,7 @@ print(sorted_values[-2])  # nex maximum
 
 
 # %%
-outlier = num_friends.index(100) # индекс выброса
+outlier = num_friends.index(100)  # индекс выброса
 # отфильтровать выброс
 num_firends_good = [x for i, x in enumerate(num_friends) if i != outlier]
 daily_minutes_good = [x for i, x in enumerate(daily_minutes) if i != outlier]
