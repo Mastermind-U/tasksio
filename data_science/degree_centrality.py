@@ -94,5 +94,5 @@ for salary, tenure in salaries_and_tenures:
 
 avg_salary_bucket = {tenure_bucket: sum(salaries) / len(salaries) for tenure_bucket, salaries in salary_bucket.items()}
 
-
-print(avg_salary_bucket)
+num_friends = [random.randint(0, 100) for i in range(100)]
+daily_minutes = [random.randint(0, 60) for i in range(100)]

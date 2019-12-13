@@ -1,8 +1,7 @@
-import random
 from collections import Counter
 from matplotlib import pyplot as plt
+from data_science.degree_centrality import num_friends, daily_minutes
 
-num_friends = [random.randint(0, 1000) for _ in range(10000)]
 
 # %%
 friend_counts = Counter(num_friends)
@@ -33,6 +32,13 @@ sorted_values = sorted(num_friends)
 print(sorted_values[0])  # minimum
 print(sorted_values[1])  # next minimum
 print(sorted_values[-2])  # nex maximum
+
+
+# %%
+outlier = num_friends.index(100) # индекс выброса
+# отфильтровать выброс
+num_firends_good = [x for i, x in enumerate(num_friends) if i != outlier]
+daily_minutes_good = [x for i, x in enumerate(daily_minutes) if i != outlier]
 
 
 # %%
