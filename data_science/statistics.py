@@ -1,5 +1,5 @@
 from collections import Counter
-from vectors import sum_of_squares
+from data_science.vectors import sum_of_squares, dot
 import math
 
 
@@ -61,3 +61,18 @@ def standard_deviation(x):
 def interquartile_range(x):
     """Интерквартильный размах"""
     return quantile(x, 0.75) - quantile(x, 0.25)
+
+
+def covariance(x, y):
+    """Ковариация"""
+    n = len(x)
+    return dot(de_mean(x), de_mean(y)) / (n - 1)
+
+
+def correlation(x, y):
+    stdev_x = standard_deviation(x)
+    stdev_y = standard_deviation(y)
+    if stdev_x > 0 and stdev_y > 0:
+        return covariance(x, y) / stdev_x / stdev_y
+    # если переменные не меняются, то корреляция равна 0
+    return 0
