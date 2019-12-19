@@ -45,6 +45,7 @@ more-itertools==7.2.0
 multidict==4.5.2
 nbconvert==5.6.1
 nbformat==4.4.0
+nltk==3.4.5
 notebook==6.0.2
 numpy==1.17.4
 numpydoc==0.9.1
@@ -98,6 +99,7 @@ spyder-kernels==1.7.0
 terminado==0.8.3
 testpath==0.4.4
 tornado==6.0.3
+tqdm==4.40.2
 traitlets==4.3.3
 typed-ast==1.4.0
 urllib3==1.25.7
