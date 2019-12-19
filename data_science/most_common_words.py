@@ -8,15 +8,12 @@ except Exception:
     print("Применение: most_common_words.py num_words")
     sys.exit(1)  # код 1 - error
 
-
-words = []
-
-for line in tqdm(list(sys.stdin)):
-    for word in line.strip().split():
-        if word:
-            words.append(word.lower())
-
-counter = Counter(words)
+counter = Counter(
+    word.lower()
+    for line in sys.stdin
+    for word in line.strip().split()
+    if word
+)
 
 for word, count in counter.most_common(num_words):
     sys.stdout.write(str(count))
