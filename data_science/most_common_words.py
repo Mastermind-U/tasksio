@@ -1,6 +1,10 @@
 import sys
 from collections import Counter
-from tqdm import tqdm
+# import nltk
+# from nltk.corpus import stopwords
+# nltk.download("stopwords")
+
+# stop_words = stopwords.words()
 
 try:
     num_words = int(sys.argv[1])
@@ -12,7 +16,7 @@ counter = Counter(
     word.lower()
     for line in sys.stdin
     for word in line.strip().split()
-    if word
+    if word  # and word not in stop_words
 )
 
 for word, count in counter.most_common(num_words):
