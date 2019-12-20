@@ -1,4 +1,5 @@
 import sys
+import itertools
 from collections import Counter
 from multiprocessing import Pool
 # import nltk
@@ -19,8 +20,19 @@ def get_words(word):
         return word.lower()
 
 
+def get_lines(line):
+    return [word for word in line.strip().split()]
+
+
 with Pool(100) as p:
-    counter = Counter(p.map(get_words, [word for line in sys.stdin for word in line.strip().split()]))
+    counter = Counter(
+        p.map(
+            get_words,
+            itertools.chain.from_iterable(
+                p.map(get_lines, sys.stdin)
+            )
+        )
+    )
 
 for word, count in counter.most_common(num_words):
     sys.stdout.write(str(count))
