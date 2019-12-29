@@ -1,5 +1,5 @@
 import sys
-import itertools
+from matplotlib.cbook import flatten
 from collections import Counter
 from multiprocessing import Pool
 # import nltk
@@ -28,9 +28,7 @@ with Pool(100) as p:
     counter = Counter(
         p.map(
             get_words,
-            itertools.chain.from_iterable(
-                p.map(get_lines, sys.stdin)
-            )
+            flatten(p.map(get_lines, sys.stdin))
         )
     )
 
